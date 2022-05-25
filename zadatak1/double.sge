@@ -1,0 +1,7 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+
+# potjeraj sum.py
+export NSLOTS=${NSLOTS:-1}
+python double.py
