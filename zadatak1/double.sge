@@ -2,6 +2,9 @@
 #$ -o output/
 #$ -e output/
 
+# napravi output folder
+mkdir -p output
+
 # potjeraj sum.py
 export NSLOTS=${NSLOTS:-1}
-python double.py
+time python double.py
