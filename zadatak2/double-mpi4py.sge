@@ -1,0 +1,19 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+
+# output
+mkdir -p output
+
+# environment
+module load mpi/openmpi41-x86_64
+
+# activate
+source venv-mpi4py/bin/activate
+
+# run
+export NSLOTS=${NSLOTS:-1}
+time mpirun -np $NSLOTS python double-mpi4py.py
+
+# deactivate
+deactivate
