@@ -1,4 +1,4 @@
-# Jasmin praksa
+# Rapids praksa
 
 ## Zadatak 1 - Osnove Isabelle, pythona i paralelnog računanja
 
@@ -78,3 +78,10 @@ procesorima. Vještine koje bi se usvojile su:
 - [Uvod u CUDU](https://developer.nvidia.com/blog/even-easier-introduction-cuda)
 - [rapids](https://rapids.ai/start.html)
 - [cuDF](https://docs.rapids.ai/api/cudf/stable/index.html)
+
+## Extra
+
+1. Dobiti još preciznije vrijeme izvršavanja svake od aplikacije pomoću python
+   modula `time` ili `cProfile`
+2. Još više ubrzati MPI verziju programa množenja brojeva iz Zadatka 2
+3. Napraviti multi-GPU verziju iz Zadatka 3
