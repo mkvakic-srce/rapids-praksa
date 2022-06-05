@@ -28,9 +28,9 @@ su:
 ## Zadatak 2 - Python virtualna okruženja i MPI
 
 Svrha ovog zadatka je upoznavanje s Python virtualnim okruženjima koja
-olakšavaju razvoj aplikacija putem izoliranih instalacijskih okolina, putem
-python modula `venv`.  Korištenjem virtualnog okruženja, pripremiti okolinu koja
-će omogućiti razvoj i izvršavanje prethodnog programa na više čvorova pomoću
+olakšavaju razvoj aplikacija putem izoliranih instalacijskih okolina (python
+modul `venv`). Korištenjem virtualnog okruženja, pripremiti okolinu koja će
+omogućiti razvoj i izvršavanje prethodnog programa na više čvorova pomoću
 standarda MPI. Vještine koje bi se usvojile su:
 
 - Upoznavanje s Python virtualnim okruženjima i instalacijskim upraviteljem `pip`
