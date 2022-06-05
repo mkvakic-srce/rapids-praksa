@@ -50,3 +50,31 @@ standarda MPI. Vještine koje bi se usvojile su:
 - [Pip](https://packaging.python.org/en/latest/tutorials/installing-packages)
 - [Korisničke aplikacije i knjižnice](https://wiki.srce.hr/pages/viewpage.action?pageId=25133120)
 - [mpi4py](https://mpi4py.readthedocs.io/en/stable/intro.html#what-is-mpi)
+
+## Zadatak 3 - Conda virtualna okruženja i rapids
+
+Ovaj zadatak posvetiti će se pripremi i razvoju aplikacija ubrzanih GPU
+jezgrama. Kao i u prošlom zadatku, stvoriti će se virtualno okruženje, no ovaj
+put korištenjem instalacijskog upravitelja `conda`. Program množenja prevesti će
+se korištenjem python knjižnice `rapids` i podnijeti na čvorove s grafičkim
+procesorima. Vještine koje bi se usvojile su:
+
+- Upoznavanje s instalacijskih upraviteljem `conda`
+- Upoznavanje sa sučeljem CUDA i knjižnicom `rapids`
+- Paralelizacija koda korištenjem GPU jezgri
+- Podnošenje poslova na čvorove s GPU jezgrama
+
+### Zadaci
+1. Pripremiti virtualno okruženje `venv-rapids` korištenjem instalacijskog
+   upravitelja `conda` i instalirati knjižnicu `rapids`
+2. Paralelizirati program množenja liste (`double-rapids.py`) korištenjem
+   `rapids`-ovog modula `cuDF` i funkcije `apply_rows`
+3. Podnijeti posao putem sistema SGE (`double-rapids.sge`) i provjeriti vrijeme
+   izvršavanja
+
+### Bibliografija
+- [Conda na Isabelli](https://wiki.srce.hr/display/RKI/Conda)
+- [GPU na Isabelli](https://wiki.srce.hr/pages/viewpage.action?pageId=27690375)
+- [Uvod u CUDU](https://developer.nvidia.com/blog/even-easier-introduction-cuda)
+- [rapids](https://rapids.ai/start.html)
+- [cuDF](https://docs.rapids.ai/api/cudf/stable/index.html)

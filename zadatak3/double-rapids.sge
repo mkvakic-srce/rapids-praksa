@@ -1,0 +1,16 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+
+# kreiraj output
+mkdir -p output
+
+# aktiviraj venv-rapids
+source /apps/miniforge3/bin/activate
+conda activate ./venv-rapids
+
+# run
+time cuda-wrapper.sh python double-rapids.py
+
+# deactivate
+conda deactivate
