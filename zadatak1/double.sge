@@ -6,5 +6,4 @@
 mkdir -p output
 
 # potjeraj sum.py
-export NSLOTS=${NSLOTS:-1}
 time python double.py

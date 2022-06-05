@@ -1,7 +1,6 @@
 # definirati funkciju hello koja ispisuje "Hello world!"
 def hello():
     print('Hello world!')
-    return
 
 if __name__ == '__main__':
 

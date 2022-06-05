@@ -1,5 +1,0 @@
-#$ -cwd
-#$ -pe p28-mpisingle 8
-
-# potjeraj hello_parallel.py
-python hello_parallel.py

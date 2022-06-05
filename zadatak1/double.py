@@ -1,28 +1,20 @@
-# zvanje potrebnih modula
-import os
-import time
-import multiprocessing
+# pomnozi listu brojeva s dva
+def double(numbers):
+    doubled = []
+    for number in numbers:
+        double = number*2
+        doubled.append(double)
+    return doubled
 
-# pomnozi broj s dva
-def double(x):
-    return x*2
-
-# pozvati hello funkciju ovisno o broju dostupnih jezgri
 if __name__ == '__main__':
 
-    # nslots - broj poslova koji odgovara varijabli okolisa NSLOTS
-    nslots = int(os.getenv('NSLOTS'))
-
-    # kreiraj multiprocessing pool
-    pool = multiprocessing.Pool(nslots)
-
-    # lista brojeva
+    # definiraj listu brojeva od 1 do 10**8
     n = 10**8
     numbers = list(range(n))
 
-    # mapiraj listu procesa na pool
-    numbers_doubled = pool.map(double, numbers)
+    # izracunaj listu udvostrucenih brojeva
+    doubled = double(numbers)
 
-    # print
-    print('numbers         : %s' % numbers[:5])
-    print('numbers_doubled : %s' % numbers_doubled[:5])
+    # isprintaj prvih pet brojeva u originalnoj i udvostrucenoj listi
+    print('numbers : %s' % numbers[:5])
+    print('doubled : %s' % doubled[:5])
