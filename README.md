@@ -28,20 +28,22 @@ su:
 ## Zadatak 2 - Python virtualna okruženja i MPI
 
 Svrha ovog zadatka je upoznavanje s Python virtualnim okruženjima koja
-olakšavaju razvoj aplikacija putem izoliranih instalacijskih okolina.
-Korištenjem virtualnog okruženja, pripremiti okolinu koja će omogućiti razvoj i
-izvršavanje prethodnog programa na više čvorova pomoću MPI. Vještine koje bi se
-usvojile su:
+olakšavaju razvoj aplikacija putem izoliranih instalacijskih okolina, putem
+python modula `venv`.  Korištenjem virtualnog okruženja, pripremiti okolinu koja
+će omogućiti razvoj i izvršavanje prethodnog programa na više čvorova pomoću
+standarda MPI. Vještine koje bi se usvojile su:
 
 - Upoznavanje s Python virtualnim okruženjima i instalacijskim upraviteljem `pip`
 - Korištenje Modulefile alata za korištenje Isabellinih aplikacija i knjižnica
-- Osnove paralelizacije koda korištenjem MPI standarda
+- Paralelizacija koda korištenjem standarda MPI
 
 ### Zadaci
 1. Pripremiti virtualno okruženje `venv-mpi4py` korištenjem python modula
-   `venv` i instalirati paket `mpi4py` 
+   `venv` i instalirati paket `mpi4py` korištenjem `pip`-a
 2. Paralelizirati prethodni program množenja liste (`double-mpi4py.py`)
    korištenjem MPI standarda putem python knjižnice `mpi4py`
+3. Podnijeti posao putem sistema SGE (`double-mpi4py.py`) i provjeriti vrijeme
+   izvršavanja u ovisnosti o broju jezgri (npr. 1, 2, 4, 8)
 
 ### Bibliografija
 - [Python virtualna okruženja](https://realpython.com/python-virtual-environments-a-primer)

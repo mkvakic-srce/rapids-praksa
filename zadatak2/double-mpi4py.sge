@@ -7,12 +7,12 @@ mkdir -p output
 
 # environment
 module load mpi/openmpi41-x86_64
+export OMPI_MCA_btl_openib_allow_ib=1
 
 # activate
 source venv-mpi4py/bin/activate
 
 # run
-export NSLOTS=${NSLOTS:-1}
 time mpirun -np $NSLOTS python double-mpi4py.py
 
 # deactivate
