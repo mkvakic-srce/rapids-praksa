@@ -1,6 +1,6 @@
 # Rapids praksa
 
-## Zadatak 1 - Osnove Isabelle, pythona i paralelnog računanja
+## Zadatak 1 - Osnove Isabelle i pythona
 
 Prvi zadatak posvećen je upoznavanju s HPC tehnologijama korištenjem klastera
 Isabelle, i primarno će se fokusirati na pisanje i izvršavanje skripta koje se
