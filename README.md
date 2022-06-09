@@ -79,7 +79,7 @@ procesorima. Vještine koje bi se usvojile su:
 - [rapids](https://rapids.ai/start.html)
 - [cuDF](https://docs.rapids.ai/api/cudf/stable/index.html)
 
-## Extra
+## Extra zadaci :computer: :computer: :computer:
 
 1. Dobiti još preciznije vrijeme izvršavanja svake od aplikacije pomoću python
    modula `time` ili `cProfile`
