@@ -2,15 +2,10 @@
 #$ -o output/
 #$ -e output/
 
-# kreiraj output
-mkdir -p output
+# kreiraj output direktorij
 
-# aktiviraj venv-rapids
-source /apps/miniforge3/bin/activate
-conda activate ./venv-rapids
+# aktiviraj virtualno okruženje
 
-# run
-time cuda-wrapper.sh python double-rapids.py
+# potjerati python skriptu
 
-# deactivate
-conda deactivate
+# deaktivirati virtualno okruženje
