@@ -2,18 +2,12 @@
 #$ -o output/
 #$ -e output/
 
-# output
-mkdir -p output
+# napraviti output direktorij
 
-# environment
-module load mpi/openmpi41-x86_64
-export OMPI_MCA_btl_openib_allow_ib=1
+# podignuti MPI knjižnicu
 
-# activate
-source venv-mpi4py/bin/activate
+# aktivirati virtualno okruženje
 
-# run
-time mpirun -np $NSLOTS python double-mpi4py.py
+# potjerati python program
 
-# deactivate
-deactivate
+# deaktivirati virtualno okruženje
