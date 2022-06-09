@@ -1,4 +1,4 @@
-# Rapids praksa
+# Rapids praksa (backup)
 
 ## Zadatak 1 - Osnove Isabelle i pythona
 
