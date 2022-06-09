@@ -1,0 +1,7 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+
+# napravi output folder
+
+# potjeraj sum.py

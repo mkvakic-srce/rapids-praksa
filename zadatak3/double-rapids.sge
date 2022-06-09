@@ -1,0 +1,11 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+
+# kreiraj output direktorij
+
+# aktiviraj virtualno okruženje
+
+# potjerati python skriptu
+
+# deaktivirati virtualno okruženje

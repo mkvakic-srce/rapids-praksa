@@ -1,0 +1,13 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+
+# napraviti output direktorij
+
+# podignuti MPI knjižnicu
+
+# aktivirati virtualno okruženje
+
+# potjerati python program
+
+# deaktivirati virtualno okruženje
