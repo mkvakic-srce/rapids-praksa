@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#$ -N sum
+#$ -o output/sum.out
+#$ -e output/sum.err
+#$ -cwd
+
+time python3 sum.py
