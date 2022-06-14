@@ -5,5 +5,5 @@
 # napravi output folder
 mkdir -p output
 
-# potjeraj double.py
-time double.py
+# potjeraj sum.py
+time python3 sum.py
