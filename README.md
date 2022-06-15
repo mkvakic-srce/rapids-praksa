@@ -79,6 +79,39 @@ procesorima. Vještine koje bi se usvojile su:
 - [rapids](https://rapids.ai/start.html)
 - [cuDF](https://docs.rapids.ai/api/cudf/stable/index.html)
 
+## Zadatak 4 - Rapids i CUDA na HTC-u
+
+Ovaj zadatak posvećen je osnovama sistemske administracije HTC servisa i
+pripremanju okoline za korištenje knjižnice `rapids`. Kao i u prošlom zadatku,
+oslanjati ćemo se na instalacijski paket `conda` i knjižnicu za GPU ubrzanje
+`CUDA`, no ovaj put instalacijom svih paketa na virtualni čvor kao `root`
+korisnik. Na kraju, pripremiti ćemo i testirati JupyterLab okolinu koja
+omogućuje razvoj aplikacija korištenjem knjižnice `rapids`.
+
+- Upoznavanje s tehnologijom HTC
+- Upoznavanje s JupyterLabom i njegovom implementacijom na klasteru Isabella
+- Osnove sistemske administracije Red-Hat/CentOS distribucije
+- Upoznavanje s konfiguracijom JupyterLab servisa pomoću IPython kernela
+
+### Zadaci
+1. Kreirati račun za HTC servis, spojiti se na <https://jupyter-dev.cro-ngi.hr>
+   s instancom `XLarge` i ulogirati se kao `root`
+2. Instalirati `condu` putem Miniforgea u `/usr/local/miniforge3`
+3. Instalirati knjižnicu `CUDA` za distribuciju `Rocky Linux release 8.5 (Green Obsidian)`
+4. Pripremiti `rapids-22.04` virtualno okruženje putem instalacijskog paketa `conda`
+5. Pripremiti JupyterLab kernel povezan na `rapids-22.04` okruženje putem
+   knjižnice `ipykernel`
+6. Testirati uspješnost instalacije knjižnice `rapids` u JupyterLab notebooku
+   pozivanjem knjižnice `cudf`
+
+### Bibliografija
+- [HTC na Isabelli](https://wiki.srce.hr/display/CRONGI/HTC+Cloud)
+- [JupyterLab](https://docs.jupyter.org/en/latest/)
+- [JupyterLab na Isabelli](https://wiki.srce.hr/display/CRONGI/JupyterLab+servisi)
+- [Miniforge](https://github.com/conda-forge/miniforge)
+- [Instalacija knjižnice CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+- [IPython kernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html)
+
 ## Extra zadaci :computer: :computer: :computer:
 
 1. Dobiti još preciznije vrijeme izvršavanja svake od aplikacije pomoću python
