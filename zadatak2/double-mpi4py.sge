@@ -1,17 +1,19 @@
 #$ -cwd
 #$ -o output/
 #$ -e output/
-#$ -pe mpi 8
+module load mpi/openmpi41-x86_64
+export OMPI_MCA_btl_openib_allow_ib=1
 
 # aktivirati virtualno okruženje
 # assuming venv is created and pip mpi4py installed
-source venv/bin/activate
+source venv-mpi4py/bin/activate
 
 # podignuti MPI knjižnicu
-module load mpi/openmpi-x86_64
+# pip install --upgrade pip
+# pip install mpi4py
 
 # potjerati python program
-time mpirun -np $NSLOTS python3 double-mpi4py.py
+time mpirun -np ${NSLOTS:-1} python3 double-mpi4py.py
 
 # deaktivirati virtualno okruženje
 deactivate
