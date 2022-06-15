@@ -1,0 +1,17 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+
+# output
+mkdir -p output
+
+# activate
+source /apps/miniforge3/bin/activate
+conda activate ./venv-nbody
+
+# run
+#time cuda-wrapper.sh python double-mpi4py.py
+time python nbody.py
+
+# deactivate
+conda deactivate
