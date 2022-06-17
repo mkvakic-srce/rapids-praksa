@@ -112,9 +112,25 @@ omogućuje razvoj aplikacija korištenjem knjižnice `rapids`.
 - [Instalacija knjižnice CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
 - [IPython kernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html)
 
-## Extra zadaci :computer: :computer: :computer:
+## Zadatak 5 - Optimizacija znanstvene aplikacije korištenjem CUDA-e
 
-1. Dobiti još preciznije vrijeme izvršavanja svake od aplikacije pomoću python
-   modula `time` ili `cProfile`
-2. Još više ubrzati MPI verziju programa množenja brojeva iz Zadatka 2
-3. Napraviti multi-GPU verziju iz Zadatka 3
+Zadnji zadatak posvećen je optimizaciji znanstvene aplikacije korištenjem MPI i
+CUDA sučelja. Nakon laganog upoznavanja s problematikom simulacije n-tijela
+(kroz najednostavniju inačicu programa) pripremiti ćemo okruženje za
+paralelizaciju python koda i pokušati ga učiniti efikasnijim.
+
+- Upoznavanje s problematikom simulacije n-tijela
+- Upoznavanje s python knjižnicom `numba`
+- Paralelizacija koda korištenjem sučelja MPI i CUDA
+
+### Zadaci
+1. Pripremiti virtualnu okolinu s knjižnicom `numba`
+2. Proučiti program `nbody.py` i identificirati način optimizacije koda
+3. Paralelizirati program sučeljima MPI pomoću `mpi4py` (`nbody-mpi4py.py`) i
+   CUDA pomoću `numbe` (`nbody-numba.py`)
+4. Usporediti vrijeme izvršavanja različitih verzija programa sa serijskom
+
+### Bibliografija
+- [Simulacija n-tijela](https://www.astrosen.unam.mx/~aguilar/MySite/Teaching_files/GH06_Intro_NBody.pdf)
+- [CUDA pomoću numbe](https://numba.pydata.org/numba-doc/latest/cuda/index.html)
+- [CUDA simulacija n-tijela](https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-31-fast-n-body-simulation-cuda)

@@ -1,67 +1,126 @@
+import math
 import random
-import numpy as np
-import matplotlib.pyplot as plt
+import pickle
+
+# seed
+random.seed(69)
 
 # konstante
-nbodies = 3
-gravity = 1e0
-timestep = 1e-2
-numsteps = 1000
-lenscale = 10
-velscale = 1
+nbodies = 100
+gravity  = 6.67e-11
+masscale = 6e25
+lenscale = 150e9
+velscale = 0*30e3
+timestep = 3600
+numsteps = 10**5
 
 # izracunaj sile
-def forces_calc(x, y):
-    fsx = []
-    fsy = []
-    for i, (x0, y0) in enumerate(zip(x, y)):
-        fx = 0
-        fy = 0
-        for j, (xi, yi) in enumerate(zip(x, y)):
-            if i == j:
-                continue
-            else:
-                r2 = (x0-xi)**2 + (y0-yi)**2
-                fr = gravity/r2
-                fx += fr*(xi-x0)/r2**0.5
-                fy += fr*(yi-y0)/r2**0.5
-        fsx.append(fx)
-        fsy.append(fy)
-    return fsx, fsy
+def forces(*args):
+    fxout, fyout = [], []
+    for i, (xi, yi, mi) in enumerate(zip(*args)):
+        fx, fy = 0, 0
+        for j, (xj, yj, mj) in enumerate(zip(*args)):
+            if i != j:
+                dx = xj-xi
+                dy = yj-yi
+                r2 = dx**2 + dy**2
+                fr = gravity*mi*mj/(r2 + (lenscale/100)**2)
+                fx += fr*dx/r2**0.5
+                fy += fr*dy/r2**0.5
+        fxout.append(fx)
+        fyout.append(fy)
+    return fxout, fyout
 
 # integriraj
-def integrate(x, y, u, v):
-    xt = np.zeros((numsteps, nbodies))
-    yt = np.zeros((numsteps, nbodies))
-    ut = np.zeros((numsteps, nbodies))
-    vt = np.zeros((numsteps, nbodies))
-    for step in range(numsteps):
-        xt[step] = x
-        yt[step] = y
-        ut[step] = u
-        vt[step] = v
-        fsx, fsy = forces_calc(x, y)
-        for i in range(nbodies):
-            x0 = x[i]
-            y0 = y[i]
-            u0 = u[i]
-            v0 = v[i]
-            ui = u0 + fsx[i]*timestep
-            vi = v0 + fsy[i]*timestep
-            xi = x0 + ui + fsx[i]/2*timestep**2
-            yi = y0 + vi + fsy[i]/2*timestep**2
-            x[i] = xi
-            y[i] = yi
-            u[i] = ui
-            v[i] = vi
-    return xt, yt, ut, vt
+def integrate(*args):
+    xout, yout, uout, vout = [], [], [], []
+    for x, y, u, v, m, fx, fy in zip(*args):
+        uout.append(u + fx/m*timestep)
+        vout.append(v + fy/m*timestep)
+        xout.append(x + u*timestep)
+        yout.append(y + v*timestep)
+    return xout, yout, uout, vout
 
-# definiraj sistem i integriraj
+# ograniči na domenu lenscale x lenscale
+def limit(*args):
+    xout, yout = [], []
+    for x, y in zip(*args):
+        if abs(x) > lenscale:
+            x -= 2*x
+        if abs(y) > lenscale:
+            y -= 2*y
+        xout.append(x)
+        yout.append(y)
+    return xout, yout
+
+# sudari
+def collisions(x, y, u, v, m):
+    xout = x[:]
+    yout = y[:]
+    uout = u[:]
+    vout = v[:]
+    mout = m[:]
+    for i, (xi, yi, ui, vi, mi) in enumerate(zip(x, y, u, v, m)):
+        for j, (xj, yj, uj, vj, mj) in enumerate(zip(x, y, u, v, m)):
+            if j > i and mout[j] is not math.nan:
+                dx = xj-xi
+                dy = yj-yi
+                r = math.sqrt(dx**2+dy**2)
+                if r < lenscale/1000:
+                    mM = mi+mj
+                    uM = (ui*mi+uj*mj)/mM
+                    vM = (vi*mi+vj*mj)/mM
+                    mout[i] = mM
+                    uout[i] = uM
+                    vout[i] = vM
+                    mout[j] = math.nan
+                    uout[j] = math.nan
+                    vout[j] = math.nan
+                    xout[j] = math.nan
+                    yout[j] = math.nan
+    xout = [ x for x in xout if x is not math.nan ]
+    yout = [ y for y in yout if y is not math.nan ]
+    uout = [ u for u in uout if u is not math.nan ]
+    vout = [ v for v in vout if v is not math.nan ]
+    mout = [ m for m in mout if m is not math.nan ]
+    return xout, yout, uout, vout, mout
+
 if __name__ == "__main__":
-    x = [ random.random()*lenscale for i in range(nbodies) ]
-    y = [ random.random()*lenscale for i in range(nbodies) ]
-    u = [ random.random()*velscale for i in range(nbodies) ]
-    v = [ random.random()*velscale for i in range(nbodies) ]
-    xt, yt, ut, vt = integrate(x, y, u, v)
-    plt.plot(xt, yt)
-    plt.savefig('nbody.png')
+
+    # definiraj sistem
+    x = [ random.uniform(-1, 1)*lenscale for i in range(nbodies) ]
+    y = [ random.uniform(-1, 1)*lenscale for i in range(nbodies) ]
+    u = [ random.uniform(-1, 1)*velscale for i in range(nbodies) ]
+    v = [ random.uniform(-1, 1)*velscale for i in range(nbodies) ]
+    m = [ masscale for i in range(nbodies) ]
+
+    # simuliraj
+    xt, yt = [], []
+    for i in range(numsteps):
+
+        # izračunaj sile
+        fx, fy = forces(x, y, m)
+
+        # integriraj
+        x, y, u, v = integrate(x, y, u, v, m, fx, fy)
+
+        # ograniči
+        x, y = limit(x, y)
+
+        # sudari
+        x, y, u, v, m = collisions(x, y, u, v, m)
+
+        # dodaj u vremenski slijed
+        if (i*timestep)%(24*3600) == 0:
+            print('%6i / %6i' % (i*timestep/3600, numsteps*timestep/3600))
+            xt.append(x)
+            yt.append(y)
+
+    # ispiši
+    with open('nbody.xt', 'wb') as f:
+        pickle.dump(xt, f)
+        f.close()
+
+    with open('nbody.yt', 'wb') as f:
+        pickle.dump(yt, f)
+        f.close()
