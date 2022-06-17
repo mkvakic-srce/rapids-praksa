@@ -1,4 +1,4 @@
-# Rapids praksa (backup)
+# Rapids praksa
 
 ## Zadatak 1 - Osnove Isabelle i pythona
 
@@ -79,9 +79,58 @@ procesorima. Vještine koje bi se usvojile su:
 - [rapids](https://rapids.ai/start.html)
 - [cuDF](https://docs.rapids.ai/api/cudf/stable/index.html)
 
-## Extra
+## Zadatak 4 - Rapids i CUDA na HTC-u
 
-1. Dobiti još preciznije vrijeme izvršavanja svake od aplikacije pomoću python
-   modula `time` ili `cProfile`
-2. Još više ubrzati MPI verziju programa množenja brojeva iz Zadatka 2
-3. Napraviti multi-GPU verziju iz Zadatka 3
+Ovaj zadatak posvećen je osnovama sistemske administracije HTC servisa i
+pripremanju okoline za korištenje knjižnice `rapids`. Kao i u prošlom zadatku,
+oslanjati ćemo se na instalacijski paket `conda` i knjižnicu za GPU ubrzanje
+`CUDA`, no ovaj put instalacijom svih paketa na virtualni čvor kao `root`
+korisnik. Na kraju, pripremiti ćemo i testirati JupyterLab okolinu koja
+omogućuje razvoj aplikacija korištenjem knjižnice `rapids`.
+
+- Upoznavanje s tehnologijom HTC
+- Upoznavanje s JupyterLabom i njegovom implementacijom na klasteru Isabella
+- Osnove sistemske administracije Red-Hat/CentOS distribucije
+- Upoznavanje s konfiguracijom JupyterLab servisa pomoću IPython kernela
+
+### Zadaci
+1. Kreirati račun za HTC servis, spojiti se na <https://jupyter-dev.cro-ngi.hr>
+   s instancom `XLarge` i ulogirati se kao `root`
+2. Instalirati `condu` putem Miniforgea u `/usr/local/miniforge3`
+3. Instalirati knjižnicu `CUDA` za distribuciju `Rocky Linux release 8.5 (Green Obsidian)`
+4. Pripremiti `rapids-22.04` virtualno okruženje putem instalacijskog paketa `conda`
+5. Pripremiti JupyterLab kernel povezan na `rapids-22.04` okruženje putem
+   knjižnice `ipykernel`
+6. Testirati uspješnost instalacije knjižnice `rapids` u JupyterLab notebooku
+   pozivanjem knjižnice `cudf`
+
+### Bibliografija
+- [HTC na Isabelli](https://wiki.srce.hr/display/CRONGI/HTC+Cloud)
+- [JupyterLab](https://docs.jupyter.org/en/latest/)
+- [JupyterLab na Isabelli](https://wiki.srce.hr/display/CRONGI/JupyterLab+servisi)
+- [Miniforge](https://github.com/conda-forge/miniforge)
+- [Instalacija knjižnice CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+- [IPython kernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html)
+
+## Zadatak 5 - Optimizacija znanstvene aplikacije korištenjem CUDA-e
+
+Zadnji zadatak posvećen je optimizaciji znanstvene aplikacije korištenjem MPI i
+CUDA sučelja. Nakon laganog upoznavanja s problematikom simulacije n-tijela
+(kroz najednostavniju inačicu programa) pripremiti ćemo okruženje za
+paralelizaciju python koda i pokušati ga učiniti efikasnijim.
+
+- Upoznavanje s problematikom simulacije n-tijela
+- Upoznavanje s python knjižnicom `numba`
+- Paralelizacija koda korištenjem sučelja MPI i CUDA
+
+### Zadaci
+1. Pripremiti virtualnu okolinu s knjižnicom `numba`
+2. Proučiti program `nbody.py` i identificirati način optimizacije koda
+3. Paralelizirati program sučeljima MPI pomoću `mpi4py` (`nbody-mpi4py.py`) i
+   CUDA pomoću `numbe` (`nbody-numba.py`)
+4. Usporediti vrijeme izvršavanja različitih verzija programa sa serijskom
+
+### Bibliografija
+- [Simulacija n-tijela](https://www.astrosen.unam.mx/~aguilar/MySite/Teaching_files/GH06_Intro_NBody.pdf)
+- [CUDA pomoću numbe](https://numba.pydata.org/numba-doc/latest/cuda/index.html)
+- [CUDA simulacija n-tijela](https://developer.nvidia.com/gpugems/gpugems3/part-v-physics-simulation/chapter-31-fast-n-body-simulation-cuda)
