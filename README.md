@@ -124,11 +124,11 @@ paralelizaciju python koda i pokušati ga učiniti efikasnijim.
 - Paralelizacija koda korištenjem sučelja MPI i CUDA
 
 ### Zadaci
-1. Pripremiti virtualnu okolinu s knjižnicom `numba`
+1. Pripremiti virtualnu okolinu `venv-nbody` s knjižnicama `mpi4py` i `numba`
 2. Proučiti program `nbody.py` i identificirati način optimizacije koda
-3. Paralelizirati program sučeljima MPI pomoću `mpi4py` (`nbody-mpi4py.py`) i
-   CUDA pomoću `numbe` (`nbody-numba.py`)
-4. Usporediti vrijeme izvršavanja različitih verzija programa sa serijskom
+3. Paralelizirati program sučeljem MPI pomoću `mpi4py` (`nbody-mpi4py.py`)
+4. Paralelizirati program sučeljem CUDA pomoću `numbe` (`nbody-numba.py`)
+5. Usporediti vrijeme izvršavanja različitih verzija programa sa serijskom
 
 ### Bibliografija
 - [Simulacija n-tijela](https://www.astrosen.unam.mx/~aguilar/MySite/Teaching_files/GH06_Intro_NBody.pdf)
