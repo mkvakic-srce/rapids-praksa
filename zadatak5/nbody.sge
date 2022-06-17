@@ -1,0 +1,13 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+
+# activate
+source /apps/miniforge3/bin/activate
+conda activate ./venv-nbody
+
+# run
+time python nbody.py
+
+# deactivate
+conda deactivate
