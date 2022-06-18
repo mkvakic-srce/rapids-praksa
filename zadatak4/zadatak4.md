@@ -5,16 +5,11 @@ bash Miniforge3-Linux-x86_64.sh
 # instalacija u /usr/local/miniforge3
 ```
 
-#### instalacija NVIDIA CUDA drivera (libcuda.so modula za RHEL)
+#### instalacija NVIDIA CUDA drivera (NVIDIA Open GPU Kernel Modules)
 ```bash
 dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo
-```
-
-#### NVIDIA Open GPU Kernel Modules
-```bash
 dnf module install nvidia-driver:latest-dkms
 ```
-
 ```bash
 ls /lib64/ | grep libcuda.so
 libcuda.so
