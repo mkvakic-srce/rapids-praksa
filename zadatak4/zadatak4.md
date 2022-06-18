@@ -41,6 +41,7 @@ import cudf
 #### check for GPU
 ```bash
 # emulated GPU na KVM virtualki je Cirrus Logic, niđe eNvidije
+# pitam se, host je PROXMOX ?
 (rapids-22.04) [root@jhub-jahusicvsite ~]# lshw -C video
   *-display
        description: VGA compatible controller
