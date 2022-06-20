@@ -112,7 +112,7 @@ omogućuje razvoj aplikacija korištenjem knjižnice `rapids`.
 - [Instalacija knjižnice CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
 - [IPython kernel](https://ipython.readthedocs.io/en/stable/install/kernel_install.html)
 
-## Zadatak 5 - Optimizacija znanstvene aplikacije korištenjem CUDA-e
+## Zadatak 5 - Optimizacija znanstvene aplikacije korištenjem sučelja MPI i CUDA
 
 Zadnji zadatak posvećen je optimizaciji znanstvene aplikacije korištenjem MPI i
 CUDA sučelja. Nakon laganog upoznavanja s problematikom simulacije n-tijela
