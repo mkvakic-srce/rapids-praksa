@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/storage/home/jhusic/rapids-praksa/zadatak3/double-rapids.py", line 19, in <module>
+    dcudf = df.apply_rows(double, incols=['input'], outcols={'out' : np.int32}, kwargs={})
+  File "/home/jhusic/.conda/envs/rapids-22.04/lib/python3.9/contextlib.py", line 79, in inner
+    return func(*args, **kwds)
+  File "/home/jhusic/.conda/envs/rapids-22.04/lib/python3.9/site-packages/cudf/core/dataframe.py", line 3795, in apply_rows
+    return applyutils.apply_rows(
+  File "/home/jhusic/.conda/envs/rapids-22.04/lib/python3.9/site-packages/cudf/utils/applyutils.py", line 78, in apply_rows
+    return applyrows.run(df)
+  File "/home/jhusic/.conda/envs/rapids-22.04/lib/python3.9/site-packages/cudf/utils/applyutils.py", line 161, in run
+    bound = self.sig.bind(**args)
+  File "/home/jhusic/.conda/envs/rapids-22.04/lib/python3.9/inspect.py", line 3045, in bind
+    return self._bind(args, kwargs)
+  File "/home/jhusic/.conda/envs/rapids-22.04/lib/python3.9/inspect.py", line 2960, in _bind
+    raise TypeError(msg) from None
+TypeError: missing a required argument: 'x'
+
+real	1m6.454s
+user	0m16.012s
+sys	0m4.054s

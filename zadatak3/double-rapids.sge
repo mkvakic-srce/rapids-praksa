@@ -8,7 +8,7 @@ source /apps/miniforge3/bin/activate
 conda activate rapids-22.04
 
 # potjerati python skriptu
-cuda-wrapper.sh time python3 double-rapids.py
+time cuda-wrapper.sh python3 double-rapids.py
 
 # deaktivirati virtualno okruženje
 conda deactivate
