@@ -2,9 +2,9 @@
 import cudf
 import numpy as np
 
-def double(x, out):
-    for i in range(len(x)):
-        out[i] = x[i]*2
+def double(input, out):
+    for i in range(len(input)):
+        out[i] = input[i]*2
         
 if __name__ == '__main__':
 
