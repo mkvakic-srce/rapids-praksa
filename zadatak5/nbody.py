@@ -12,7 +12,7 @@ masscale = 6e25
 lenscale = 150e9
 velscale = 0*30e3
 timestep = 3600
-numsteps = 1000
+numsteps = 3
 
 # izracunaj sile
 def forces(*args):
@@ -116,7 +116,7 @@ if __name__ == "__main__":
             xt.append(x)
             yt.append(y)
 
-    # print(x[:10])
+    print(x[:10])
     # print(y)
     
     # ispiši

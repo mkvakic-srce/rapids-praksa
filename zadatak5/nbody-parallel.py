@@ -14,7 +14,7 @@ masscale = 6e25
 lenscale = 150e9
 velscale = 0*30e3
 timestep = 3600
-numsteps = 1000
+numsteps = 3
 
 # inicijaliziraj MPI
 comm = MPI.COMM_WORLD
@@ -42,8 +42,7 @@ def forces(x, y, m, x_s, y_s, m_s):
     for i, (xs, ys, ms) in enumerate(zip(x_s, y_s, m_s)): # podlista
         fx, fy = 0, 0
         for j, (xj, yj, mj) in enumerate(zip(x, y, m)): # cijela lista
-            # if i != j:
-            if math.isclose(xs, xj) & math.isclose(ys, yj): 
+            if not (math.isclose(xs, xj) & math.isclose(ys, yj)): 
                 dx = xj-xs
                 dy = yj-ys
                 r2 = dx**2 + dy**2
@@ -63,7 +62,6 @@ def integrate(*args):
         xout.append(x + u*timestep)
         yout.append(y + v*timestep)
     return xout, yout, uout, vout
-
 
 # ograniči na domenu lenscale x lenscale
 def limit(*args):
@@ -168,8 +166,6 @@ if __name__ == "__main__":
             v = flattenList(gathered_list_v, numOfProccesses)
             m = flattenList(gathered_list_m, numOfProccesses)
 
-            # print(x[:10])
-
             # dodaj u vremenski slijed
             if (i*timestep)%(24*3600) == 0:
                 print('%6i / %6i' % (i*timestep/3600, numsteps*timestep/3600))
@@ -177,8 +173,6 @@ if __name__ == "__main__":
                 yt.append(y)
 
     if rank == 0:
-
-        # print(x[:10])
 
         # ispiši
         with open('nbody-parallel.xt', 'wb') as f:
