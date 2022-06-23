@@ -65,13 +65,16 @@ if __name__ == '__main__':
         # The elements are ordered by the rank of the process from which they were received.
         # The Comm.Gather method takes the same arguments as Comm.Scatter. Howeverm, in the gather operation, 
         # only the root process needs to have a valid receive buffer.
-        print(rank, i, sum_list_)
+        # print(rank, i, sum_list_)
         gathered_list = comm.gather(sum_list_, root = 0)
         # print("rank: ",rank, "i: ", i, "gathered_list",gathered_list)
 
         # update global with gathered
         if rank == 0:
             global_list = flattenList(gathered_list, numOfProccesses)
+
+            print("initial_list: ", initial_list)
+            print("global_list: ", global_list)
 
         
 
