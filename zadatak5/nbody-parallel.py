@@ -14,7 +14,20 @@ masscale = 6e25
 lenscale = 150e9
 velscale = 0*30e3
 timestep = 3600
-numsteps = 1
+numsteps = 3
+
+# inicijaliziraj MPI
+comm = MPI.COMM_WORLD
+numOfProccesses = comm.Get_size() # total number of processes running
+rank = comm.Get_rank() # number of the process running the code (counter of running process)
+
+    
+def splitList(list_):
+    split_len = nbodies//numOfProccesses
+    split_list = []
+    for i in range(numOfProccesses):
+        split_list.append(list_[i*split_len:(i+1)*split_len])
+    return split_list  
 
 def flattenList(list, size):
     n = []
@@ -25,16 +38,16 @@ def flattenList(list, size):
 
 # izracunaj sile
 # racuna sile između tijela u svakom trenutku
-def forces(*args):
+def forces(x, y, m, x_s, y_s, m_s):
     fxout, fyout = [], []
-    for i, (xi, yi, mi) in enumerate(zip(*args)): # ovo bi trebala biti podlista
+    for i, (xs, ys, ms) in enumerate(zip(x_s, y_s, m_s)): # podlista
         fx, fy = 0, 0
-        for j, (xj, yj, mj) in enumerate(zip(*args)): # za svaki član liste
+        for j, (xj, yj, mj) in enumerate(zip(x, y, m)): # cijela lista
             if i != j:
-                dx = xj-xi
-                dy = yj-yi
+                dx = xj-xs
+                dy = yj-ys
                 r2 = dx**2 + dy**2
-                fr = gravity*mi*mj/(r2 + (lenscale/100)**2)
+                fr = gravity*ms*mj/(r2 + (lenscale/100)**2)
                 fx += fr*dx/r2**0.5
                 fy += fr*dy/r2**0.5
         fxout.append(fx)
@@ -98,10 +111,6 @@ def collisions(x, y, u, v, m):
 
 if __name__ == "__main__":
 
-    # inicijaliziraj MPI
-    comm = MPI.COMM_WORLD
-    numOfProccesses = comm.Get_size() # total number of processes running
-    rank = comm.Get_rank() # number of the process running the code (counter of running process)
 
     if rank == 0:
 
@@ -128,38 +137,40 @@ if __name__ == "__main__":
         v = comm.bcast(v, root = 0)
         m = comm.bcast(m, root = 0)
 
-        if rank == 0:
+        sc_list_x = comm.scatter(splitList(x), root = 0)
+        sc_list_y = comm.scatter(splitList(y), root = 0)
+        sc_list_u = comm.scatter(splitList(u), root = 0)
+        sc_list_v = comm.scatter(splitList(v), root = 0)
+        sc_list_m = comm.scatter(splitList(m), root = 0)
 
-            # print("forces")
-            # izračunaj sile
-            fx, fy = forces(x, y, m)
+        # izračunaj sile
+        fx, fy = forces(x, y, m, sc_list_x, sc_list_y, sc_list_m)
 
-            # integriraj (update)
-            x, y, u, v = integrate(x, y, u, v, m, fx, fy)
 
-        split_list_y = []
-        for j in range(numOfProccesses):
-            split_list_y.append(y[j*split_len:(j+1)*split_len])  
-
-        split_list_x = []
-        for j in range(numOfProccesses):
-            split_list_x.append(x[j*split_len:(j+1)*split_len]) 
-
-        sc_list_x = comm.scatter(split_list_x, root = 0)
-        sc_list_y = comm.scatter(split_list_y, root = 0)
+        # integriraj (update)
+        sc_list_x, sc_list_y, sc_list_u, sc_list_v = integrate(sc_list_x, sc_list_y, sc_list_u, sc_list_v, sc_list_m, fx, fy)
 
         # ograniči     
-        x, y = limit(sc_list_x, sc_list_y)
+        sc_list_x, sc_list_y = limit(sc_list_x, sc_list_y)
 
+        # sudari
+        sc_list_x, sc_list_y, sc_list_u, sc_list_v, sc_list_m = collisions( sc_list_x, sc_list_y, sc_list_u, sc_list_v, sc_list_m)
+        
         gathered_list_x = comm.gather(x, root = 0)
         gathered_list_y = comm.gather(y, root = 0)
+        gathered_list_u = comm.gather(u, root = 0)
+        gathered_list_v = comm.gather(v, root = 0)
+        gathered_list_m = comm.gather(m, root = 0)
 
         if rank == 0:
+
             x = flattenList(gathered_list_x, numOfProccesses)
             y = flattenList(gathered_list_y, numOfProccesses)
+            u = flattenList(gathered_list_u, numOfProccesses)
+            v = flattenList(gathered_list_v, numOfProccesses)
+            m = flattenList(gathered_list_m, numOfProccesses)
 
-            # sudari
-            x, y, u, v, m = collisions(x, y, u, v, m)
+            print(x)
 
             # dodaj u vremenski slijed
             if (i*timestep)%(24*3600) == 0:
@@ -169,9 +180,8 @@ if __name__ == "__main__":
 
     if rank == 0:
 
-        print(x)
-        print(y)
-        
+        # print(x)
+
         # ispiši
         with open('nbody.xt', 'wb') as f:
             pickle.dump(xt, f)
