@@ -8,20 +8,19 @@ from mpi4py import MPI
 random.seed(69)
 
 # konstante
-nbodies = 10 # broj N-tijela
+nbodies = 500 # broj N-tijela
 gravity  = 6.67e-11 # gravitacijska konstanta
 masscale = 6e25 
 lenscale = 150e9
 velscale = 0*30e3
 timestep = 3600
-numsteps = 3
+numsteps = 1000
 
 # inicijaliziraj MPI
 comm = MPI.COMM_WORLD
 numOfProccesses = comm.Get_size() # total number of processes running
 rank = comm.Get_rank() # number of the process running the code (counter of running process)
 
-    
 def splitList(list_):
     split_len = nbodies//numOfProccesses
     split_list = []
@@ -43,7 +42,8 @@ def forces(x, y, m, x_s, y_s, m_s):
     for i, (xs, ys, ms) in enumerate(zip(x_s, y_s, m_s)): # podlista
         fx, fy = 0, 0
         for j, (xj, yj, mj) in enumerate(zip(x, y, m)): # cijela lista
-            if i != j:
+            # if i != j:
+            if math.isclose(xs, xj) & math.isclose(ys, yj): 
                 dx = xj-xs
                 dy = yj-ys
                 r2 = dx**2 + dy**2
@@ -111,7 +111,6 @@ def collisions(x, y, u, v, m):
 
 if __name__ == "__main__":
 
-
     if rank == 0:
 
         # definiraj sistem
@@ -146,7 +145,6 @@ if __name__ == "__main__":
         # izračunaj sile
         fx, fy = forces(x, y, m, sc_list_x, sc_list_y, sc_list_m)
 
-
         # integriraj (update)
         sc_list_x, sc_list_y, sc_list_u, sc_list_v = integrate(sc_list_x, sc_list_y, sc_list_u, sc_list_v, sc_list_m, fx, fy)
 
@@ -156,11 +154,11 @@ if __name__ == "__main__":
         # sudari
         sc_list_x, sc_list_y, sc_list_u, sc_list_v, sc_list_m = collisions( sc_list_x, sc_list_y, sc_list_u, sc_list_v, sc_list_m)
         
-        gathered_list_x = comm.gather(x, root = 0)
-        gathered_list_y = comm.gather(y, root = 0)
-        gathered_list_u = comm.gather(u, root = 0)
-        gathered_list_v = comm.gather(v, root = 0)
-        gathered_list_m = comm.gather(m, root = 0)
+        gathered_list_x = comm.gather(sc_list_x, root = 0)
+        gathered_list_y = comm.gather(sc_list_y, root = 0)
+        gathered_list_u = comm.gather(sc_list_u, root = 0)
+        gathered_list_v = comm.gather(sc_list_v, root = 0)
+        gathered_list_m = comm.gather(sc_list_m, root = 0)
 
         if rank == 0:
 
@@ -170,7 +168,7 @@ if __name__ == "__main__":
             v = flattenList(gathered_list_v, numOfProccesses)
             m = flattenList(gathered_list_m, numOfProccesses)
 
-            print(x)
+            # print(x[:10])
 
             # dodaj u vremenski slijed
             if (i*timestep)%(24*3600) == 0:
@@ -180,14 +178,14 @@ if __name__ == "__main__":
 
     if rank == 0:
 
-        # print(x)
+        # print(x[:10])
 
         # ispiši
-        with open('nbody.xt', 'wb') as f:
+        with open('nbody-parallel.xt', 'wb') as f:
             pickle.dump(xt, f)
             f.close()
 
-        with open('nbody.yt', 'wb') as f:
+        with open('nbody-parallel.yt', 'wb') as f:
             pickle.dump(yt, f)
             f.close()
 

@@ -1,6 +1,7 @@
 #$ -cwd
 #$ -o output/
 #$ -e output/
+#$ -pe *mpi 16
 module load mpi/openmpi41-x86_64
 export OMPI_MCA_btl_openib_allow_ib=1
 

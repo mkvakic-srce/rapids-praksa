@@ -6,13 +6,13 @@ import pickle
 random.seed(69)
 
 # konstante
-nbodies = 10
+nbodies = 500
 gravity  = 6.67e-11
 masscale = 6e25
 lenscale = 150e9
 velscale = 0*30e3
 timestep = 3600
-numsteps = 2
+numsteps = 1000
 
 # izracunaj sile
 def forces(*args):
@@ -116,7 +116,7 @@ if __name__ == "__main__":
             xt.append(x)
             yt.append(y)
 
-    print(x)
+    # print(x[:10])
     # print(y)
     
     # ispiši
