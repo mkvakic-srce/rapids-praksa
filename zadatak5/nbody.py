@@ -116,9 +116,6 @@ if __name__ == "__main__":
             xt.append(x)
             yt.append(y)
 
-    print(x[:10])
-    # print(y)
-    
     # ispiši
     with open('nbody.xt', 'wb') as f:
         pickle.dump(xt, f)
