@@ -1,0 +1,24 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+#$ -pe gpu 1
+
+# module load cuda/11-2
+# module load mpi/openmpi41-x86_64
+# export OMPI_MCA_btl_openib_allow_ib=1
+
+
+# activate
+# source /apps/miniforge3/bin/activate
+. /home/jhusic/rapids-praksa/zadatak5/miniforge3/bin/activate
+conda activate numba-venv
+
+# run
+# time mpirun -np ${NSLOTS:-1} python3 nbody.py
+# time mpirun -np ${NSLOTS:-1} python3 nbody-testing.py
+# time cuda-wrapper.sh python3 nbody-numba.py
+time cuda-wrapper.sh python3 numba-test.py
+
+
+# deactivate
+conda deactivate
