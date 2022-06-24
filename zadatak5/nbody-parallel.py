@@ -14,7 +14,7 @@ masscale = 6e25
 lenscale = 150e9
 velscale = 0*30e3
 timestep = 3600
-numsteps = 3
+numsteps = 100
 
 # inicijaliziraj MPI
 comm = MPI.COMM_WORLD
