@@ -10,7 +10,7 @@
 
 # activate
 # source /apps/miniforge3/bin/activate
-. /home/jhusic/rapids-praksa/zadatak5/miniforge3/bin/activate
+source /home/jhusic/rapids-praksa/zadatak5/miniforge3/bin/activate
 conda activate numba-venv
 
 # run

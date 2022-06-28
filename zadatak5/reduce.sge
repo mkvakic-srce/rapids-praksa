@@ -1,0 +1,12 @@
+#$ -cwd
+#$ -o output/
+#$ -e output/
+#$ -pe gpu 1
+
+source /home/jhusic/rapids-praksa/zadatak5/miniforge3/bin/activate
+conda activate numba-venv
+
+time cuda-wrapper.sh python3 reduce.py
+
+# deactivate conda 
+conda deactivate

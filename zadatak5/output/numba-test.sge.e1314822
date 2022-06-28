@@ -1,4 +1,4 @@
-/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (1) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
+/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (2) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
   warn(NumbaPerformanceWarning(msg))
 /storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/cudadrv/devicearray.py:885: NumbaPerformanceWarning: Host array used in CUDA kernel will incur copy overhead to/from device.
   warn(NumbaPerformanceWarning(msg))
@@ -8,23 +8,23 @@
   warn(NumbaPerformanceWarning(msg))
 /storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (1) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
   warn(NumbaPerformanceWarning(msg))
-/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/cudadrv/devicearray.py:885: NumbaPerformanceWarning: Host array used in CUDA kernel will incur copy overhead to/from device.
-  warn(NumbaPerformanceWarning(msg))
-/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (1) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
+/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (2) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
   warn(NumbaPerformanceWarning(msg))
 /storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/cudadrv/devicearray.py:885: NumbaPerformanceWarning: Host array used in CUDA kernel will incur copy overhead to/from device.
   warn(NumbaPerformanceWarning(msg))
-/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (1) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
+/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (2) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
   warn(NumbaPerformanceWarning(msg))
 /storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/cudadrv/devicearray.py:885: NumbaPerformanceWarning: Host array used in CUDA kernel will incur copy overhead to/from device.
   warn(NumbaPerformanceWarning(msg))
-/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (1) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
+/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (2) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
   warn(NumbaPerformanceWarning(msg))
 /storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/cudadrv/devicearray.py:885: NumbaPerformanceWarning: Host array used in CUDA kernel will incur copy overhead to/from device.
+  warn(NumbaPerformanceWarning(msg))
+/storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (2) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
   warn(NumbaPerformanceWarning(msg))
 /storage/home/jhusic/rapids-praksa/zadatak5/miniforge3/envs/numba-venv/lib/python3.10/site-packages/numba/cuda/compiler.py:726: NumbaPerformanceWarning: Grid size (1) < 2 * SM count (160) will likely result in GPU under utilization due to low occupancy.
   warn(NumbaPerformanceWarning(msg))
 
-real	0m2.809s
-user	0m2.131s
-sys	0m0.721s
+real	55m11.652s
+user	53m54.889s
+sys	1m6.864s

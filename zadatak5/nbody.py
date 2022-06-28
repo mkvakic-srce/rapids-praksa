@@ -6,7 +6,7 @@ import pickle
 random.seed(69)
 
 # konstante
-nbodies = 500
+nbodies = 50
 gravity  = 6.67e-11
 masscale = 6e25
 lenscale = 150e9
@@ -15,18 +15,25 @@ timestep = 3600
 numsteps = 100
 
 # izracunaj sile
+# (xi, xj, mi, mj,    fx, fy)
 def forces(*args):
     fxout, fyout = [], []
     for i, (xi, yi, mi) in enumerate(zip(*args)):
         fx, fy = 0, 0
+
         for j, (xj, yj, mj) in enumerate(zip(*args)):
             if i != j:
+
+                # @jit fn:
                 dx = xj-xi
                 dy = yj-yi
                 r2 = dx**2 + dy**2
                 fr = gravity*mi*mj/(r2 + (lenscale/100)**2)
+                
+                # reduce:
                 fx += fr*dx/r2**0.5
                 fy += fr*dy/r2**0.5
+
         fxout.append(fx)
         fyout.append(fy)
     return fxout, fyout
